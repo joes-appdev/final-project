@@ -1,0 +1,67 @@
+<h1>
+  Edit meeting #<%= @meeting.id %>
+</h1>
+
+<hr>
+
+<%= render("meeting_templates/validation_failures.html.erb") %>
+
+<form action="/update_meeting_record/<%= @meeting.id %>" method="post">
+  <div>
+    <label for="connections_id">
+      Connections
+    </label>
+
+    <input type="text" id="connections_id" name="connections_id" value="<%= @meeting.connections_id %>">
+  </div>
+
+  <div>
+    <label for="date">
+      Date
+    </label>
+
+    <input type="text" id="date" name="date" value="<%= @meeting.date %>">
+  </div>
+
+  <div>
+    <label for="meeting_notes">
+      Meeting notes
+    </label>
+
+    <textarea id="meeting_notes" name="meeting_notes" rows="3"><%= @meeting.meeting_notes %></textarea>
+  </div>
+
+  <div>
+    <label for="location_id">
+      Location
+    </label>
+
+    <input type="text" id="location_id" name="location_id" value="<%= @meeting.location_id %>">
+  </div>
+
+  <div>
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" value="<%= @meeting.user_id %>">
+  </div>
+
+  <div>
+    <label for="meeting_type">
+      Meeting type
+    </label>
+
+    <input type="text" id="meeting_type" name="meeting_type" value="<%= @meeting.meeting_type %>">
+  </div>
+
+  <button>
+    Update meeting
+  </button>
+</form>
+
+<hr>
+
+<a href="/meetings">
+  Go back
+</a>

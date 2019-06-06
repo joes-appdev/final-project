@@ -1,0 +1,59 @@
+<h1>
+  Edit connection #<%= @connection.id %>
+</h1>
+
+<hr>
+
+<%= render("connection_templates/validation_failures.html.erb") %>
+
+<form action="/update_connection_record/<%= @connection.id %>" method="post">
+  <div>
+    <label for="company_id">
+      Company
+    </label>
+
+    <input type="text" id="company_id" name="company_id" value="<%= @connection.company_id %>">
+  </div>
+
+  <div>
+    <label for="location_id">
+      Location
+    </label>
+
+    <input type="text" id="location_id" name="location_id" value="<%= @connection.location_id %>">
+  </div>
+
+  <div>
+    <label for="photo">
+      Photo
+    </label>
+
+    <input type="text" id="photo" name="photo" value="<%= @connection.photo %>">
+  </div>
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" value="<%= @connection.name %>">
+  </div>
+
+  <div>
+    <label for="linkein">
+      Linkein
+    </label>
+
+    <input type="text" id="linkein" name="linkein" value="<%= @connection.linkein %>">
+  </div>
+
+  <button>
+    Update connection
+  </button>
+</form>
+
+<hr>
+
+<a href="/connections">
+  Go back
+</a>

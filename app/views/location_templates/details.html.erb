@@ -1,0 +1,47 @@
+<h1>
+  Location #<%= @location.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/locations">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/existing_location_form/<%= @location.id %>">
+      Edit location
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_location/<%= @location.id %>">
+      Delete location
+    </a>
+  </div>
+</div>
+
+<dl>
+  <dt>
+    Address
+  </dt>
+  <dd>
+    <%= @location.address %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location.updated_at) %> ago
+  </dd>
+</dl>
+

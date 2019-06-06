@@ -1,0 +1,75 @@
+<h1>
+  Connection #<%= @connection.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/connections">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/existing_connection_form/<%= @connection.id %>">
+      Edit connection
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_connection/<%= @connection.id %>">
+      Delete connection
+    </a>
+  </div>
+</div>
+
+<dl>
+  <dt>
+    Company
+  </dt>
+  <dd>
+    <%= @connection.company_id %>
+  </dd>
+
+  <dt>
+    Location
+  </dt>
+  <dd>
+    <%= @connection.location_id %>
+  </dd>
+
+  <dt>
+    Photo
+  </dt>
+  <dd>
+    <%= @connection.photo %>
+  </dd>
+
+  <dt>
+    Name
+  </dt>
+  <dd>
+    <%= @connection.name %>
+  </dd>
+
+  <dt>
+    Linkein
+  </dt>
+  <dd>
+    <%= @connection.linkein %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@connection.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@connection.updated_at) %> ago
+  </dd>
+</dl>
+

@@ -1,0 +1,35 @@
+<h1>
+  Edit attendee #<%= @attendee.id %>
+</h1>
+
+<hr>
+
+<%= render("attendee_templates/validation_failures.html.erb") %>
+
+<form action="/update_attendee_record/<%= @attendee.id %>" method="post">
+  <div>
+    <label for="meeting_id">
+      Meeting
+    </label>
+
+    <input type="text" id="meeting_id" name="meeting_id" value="<%= @attendee.meeting_id %>">
+  </div>
+
+  <div>
+    <label for="connection_id">
+      Connection
+    </label>
+
+    <input type="text" id="connection_id" name="connection_id" value="<%= @attendee.connection_id %>">
+  </div>
+
+  <button>
+    Update attendee
+  </button>
+</form>
+
+<hr>
+
+<a href="/attendees">
+  Go back
+</a>

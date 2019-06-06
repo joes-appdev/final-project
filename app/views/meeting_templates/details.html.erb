@@ -1,0 +1,82 @@
+<h1>
+  Meeting #<%= @meeting.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/meetings">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/existing_meeting_form/<%= @meeting.id %>">
+      Edit meeting
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_meeting/<%= @meeting.id %>">
+      Delete meeting
+    </a>
+  </div>
+</div>
+
+<dl>
+  <dt>
+    Connections
+  </dt>
+  <dd>
+    <%= @meeting.connections_id %>
+  </dd>
+
+  <dt>
+    Date
+  </dt>
+  <dd>
+    <%= @meeting.date %>
+  </dd>
+
+  <dt>
+    Meeting notes
+  </dt>
+  <dd>
+    <%= @meeting.meeting_notes %>
+  </dd>
+
+  <dt>
+    Location
+  </dt>
+  <dd>
+    <%= @meeting.location_id %>
+  </dd>
+
+  <dt>
+    User
+  </dt>
+  <dd>
+    <%= @meeting.user_id %>
+  </dd>
+
+  <dt>
+    Meeting type
+  </dt>
+  <dd>
+    <%= @meeting.meeting_type %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@meeting.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@meeting.updated_at) %> ago
+  </dd>
+</dl>
+

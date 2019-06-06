@@ -1,0 +1,27 @@
+<h1>
+  Edit location #<%= @location.id %>
+</h1>
+
+<hr>
+
+<%= render("location_templates/validation_failures.html.erb") %>
+
+<form action="/update_location_record/<%= @location.id %>" method="post">
+  <div>
+    <label for="address">
+      Address
+    </label>
+
+    <input type="text" id="address" name="address" value="<%= @location.address %>">
+  </div>
+
+  <button>
+    Update location
+  </button>
+</form>
+
+<hr>
+
+<a href="/locations">
+  Go back
+</a>

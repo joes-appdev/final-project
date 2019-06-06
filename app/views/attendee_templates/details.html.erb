@@ -1,0 +1,54 @@
+<h1>
+  Attendee #<%= @attendee.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/attendees">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/existing_attendee_form/<%= @attendee.id %>">
+      Edit attendee
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_attendee/<%= @attendee.id %>">
+      Delete attendee
+    </a>
+  </div>
+</div>
+
+<dl>
+  <dt>
+    Meeting
+  </dt>
+  <dd>
+    <%= @attendee.meeting_id %>
+  </dd>
+
+  <dt>
+    Connection
+  </dt>
+  <dd>
+    <%= @attendee.connection_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@attendee.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@attendee.updated_at) %> ago
+  </dd>
+</dl>
+
