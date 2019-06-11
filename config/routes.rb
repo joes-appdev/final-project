@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Routes for the Attendee resource:
+
+  match("/", { :controller => "attendees", :action => "blank_form", :via => "get" })
+
 
   # CREATE
   match("/new_attendee_form", { :controller => "attendees", :action => "blank_form", :via => "get" })
