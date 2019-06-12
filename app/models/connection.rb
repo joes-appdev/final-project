@@ -17,5 +17,12 @@ class Connection < ApplicationRecord
  belongs_to :company
 belongs_to :location
 
+
+
+def location
+   return Location.where({:id => self.location_id})
+end
+
+
     
 end

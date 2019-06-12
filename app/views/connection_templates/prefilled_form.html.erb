@@ -14,14 +14,34 @@
 
     <input type="text" id="company_id" name="company_id" value="<%= @connection.company_id %>">
   </div>
+  
+  
+  
+  
 
-  <div>
-    <label for="location_id">
-      Location
-    </label>
+  <!--<div>-->
+  <!--  <label for="location_id">-->
+  <!--    Location-->
+  <!--  </label>-->
 
-    <input type="text" id="location_id" name="location_id" value="<%= @connection.location_id %>">
+  <!--  <input type="text" id="location_id" name="location_id" value="<%= @connection.location_id %>">-->
+  <!--</div>-->
+  
+    <div>
+
+      <label for="location_id">Location</label>
+      <select id="location_id" name="location_id" >
+        <% Location.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.address %>
+          </option>
+        <% end %>
+      </select>
   </div>
+  
+  
+  
+  
 
   <div>
     <label for="photo">

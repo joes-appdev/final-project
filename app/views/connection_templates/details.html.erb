@@ -34,14 +34,14 @@
     Location
   </dt>
   <dd>
-    <%= @connection.location_id %>
+    <%= @connection.location.pluck(:address).to_sentence%>
   </dd>
 
   <dt>
     Photo
   </dt>
   <dd>
-    <%= @connection.photo %>
+   <img src= <%= @connection.photo %> >
   </dd>
 
   <dt>
@@ -52,11 +52,11 @@
   </dd>
 
   <dt>
-    Linkein
+            <a href="<%= @connection.linkein %>">
+          Linkedin
+        </a>
   </dt>
-  <dd>
-    <%= @connection.linkein %>
-  </dd>
+
 
   <dt>
     Created at

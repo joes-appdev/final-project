@@ -34,13 +34,6 @@
       Linkein
     </th>
 
-    <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
-    </th>
 
     <th>
     </th>
@@ -61,24 +54,20 @@
     </td>
 
     <td>
-      <%= connection.photo %>
-    </td>
+   <img src= <%= connection.photo %> >
+   </td>
 
     <td>
       <%= connection.name %>
     </td>
 
     <td>
-      <%= connection.linkein %>
+      <a href="<%= connection.linkein %>">
+          Linkedin
+        </a>
     </td>
 
-    <td>
-      <%= time_ago_in_words(connection.created_at) %> ago
-    </td>
 
-    <td>
-      <%= time_ago_in_words(connection.updated_at) %> ago
-    </td>
 
     <td>
       <a href="/connections/<%= connection.id %>">
