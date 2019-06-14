@@ -1,6 +1,4 @@
-<h1>
-  Connection #<%= @connection.id %> details
-</h1>
+
 
 <div>
   <div>
@@ -22,12 +20,20 @@
   </div>
 </div>
 
+<h1>
+  <%= @connection.name %> 
+</h1>
+
+  <dd>
+   <img src= <%= @connection.photo %> height = 150x >
+  </dd>
+
 <dl>
   <dt>
     Company
   </dt>
   <dd>
-    <%= @connection.company_id %>
+    <%= @connection.company.pluck(:company).first %>
   </dd>
 
   <dt>
@@ -37,19 +43,6 @@
     <%= @connection.location.pluck(:address).to_sentence%>
   </dd>
 
-  <dt>
-    Photo
-  </dt>
-  <dd>
-   <img src= <%= @connection.photo %> >
-  </dd>
-
-  <dt>
-    Name
-  </dt>
-  <dd>
-    <%= @connection.name %>
-  </dd>
 
   <dt>
             <a href="<%= @connection.linkein %>">
@@ -59,17 +52,83 @@
 
 
   <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@connection.created_at) %> ago
-  </dd>
+Created <%= time_ago_in_words(@connection.created_at) %> ago </dt>
 
   <dt>
-    Updated at
+  Last Updated <%= time_ago_in_words(@connection.updated_at) %> ago
   </dt>
-  <dd>
-    <%= time_ago_in_words(@connection.updated_at) %> ago
-  </dd>
+  
+  
+ 
 </dl>
+
+<h3>Meetings With <%=@connection.name%></h3>
+
+
+
+<table>
+  <tr>
+    <th>
+      Date
+    </th>
+
+
+    <th>
+      Location
+    </th>
+
+    <th>
+      Meeting type
+    </th>
+
+    <th>
+      Meeting notes
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+
+
+<% Meeting.where({:user_id => current_user.id}).where({:connections_id => @connection.id}).each do |meeting| %>
+  
+  
+  <tr>
+
+    <td>
+      <%= meeting.date %>
+   </td>
+    
+
+    <td>
+      <%= meeting.location.pluck(:address).to_sentence %>
+    </td>
+
+    <td>
+      <%= meeting.meeting_type %>
+    </td>
+
+    <td>
+      <%= meeting.meeting_notes %>
+    </td>
+
+    <td>
+      <a href="/meetings/<%= meeting.id %>">
+        Show details
+      </a>
+    </td>
+    
+
+
+  </tr>
+<% end %>
+  
+  
+  
+</table>
+
+
+
+
 

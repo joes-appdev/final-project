@@ -7,22 +7,32 @@
 <%= render("connection_templates/validation_failures.html.erb") %>
 
 <form action="/insert_connection_record" method="post">
-  <div>
-    <label for="company_id">
-      Company
-    </label>
 
-    <input type="text" id="company_id" name="company_id" value="<%= @connection.company_id %>">
+  
+  <div>
+
+      <label for="company_id">Company</label>
+      <select id="company_id" name="company_id" >
+        <% Company.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.company %>
+          </option>
+        <% end %>
+      </select>
   </div>
 
-  <div>
-    <label for="location_id">
-      Location
-    </label>
+    <div>
 
-    <input type="text" id="location_id" name="location_id" value="<%= @connection.location_id %>">
+      <label for="location_id">Location</label>
+      <select id="location_id" name="location_id" >
+        <% Location.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.address %>
+          </option>
+        <% end %>
+      </select>
   </div>
-
+  
   <div>
     <label for="photo">
       Photo
@@ -41,7 +51,7 @@
 
   <div>
     <label for="linkein">
-      Linkein
+      Linkedin
     </label>
 
     <input type="text" id="linkein" name="linkein" value="<%= @connection.linkein %>">

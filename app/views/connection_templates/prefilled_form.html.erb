@@ -8,12 +8,17 @@
 
 <form action="/update_connection_record/<%= @connection.id %>" method="post">
   <div>
-    <label for="company_id">
-      Company
-    </label>
 
-    <input type="text" id="company_id" name="company_id" value="<%= @connection.company_id %>">
+      <label for="company_id">Location</label>
+      <select id="company_id" name="company_id" >
+        <% Company.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.company %>
+          </option>
+        <% end %>
+      </select>
   </div>
+
   
   
   

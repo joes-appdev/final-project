@@ -1,6 +1,16 @@
+
+<% if current_user.blank? %>
+
+<h1> Looks like you aren't logged in yet! </h1>
+
+<dd>Please login or sign up using the above links.</dd>
+
+<% else %>
 <h1>
   Meeting list
 </h1>
+
+
 
 <a href="/new_meeting_form">
   Add a new meeting
@@ -8,85 +18,66 @@
 
 <hr>
 
+
+
+
+
 <table>
   <tr>
     <th>
-      ID
-    </th>
-
-    <th>
-      Connections
-    </th>
-
-    <th>
       Date
     </th>
-
     <th>
-      Meeting notes
+      Connection
     </th>
+
+
+
+
 
     <th>
       Location
     </th>
 
-    <th>
-      User
-    </th>
 
     <th>
       Meeting type
     </th>
 
-    <th>
-      Created at
-    </th>
 
-    <th>
-      Updated at
-    </th>
+
+
 
     <th>
     </th>
   </tr>
 
-  <% @meetings.each do |meeting| %>
-  <tr>
-    <td>
-      <%= meeting.id %>
-    </td>
 
-    <td>
-      <%= meeting.connections_id %>
-    </td>
+  <% @meetings.where({:user_id => current_user.id}).each do |meeting| %>
+  <tr>
 
     <td>
       <%= meeting.date %>
     </td>
-
+    
     <td>
-      <%= meeting.meeting_notes %>
+      <%= meeting.connection.pluck(:name).to_sentence %>
     </td>
 
-    <td>
-      <%= meeting.location_id %>
-    </td>
+
+
+
 
     <td>
-      <%= meeting.user_id %>
+      <%= meeting.location.pluck(:address).to_sentence %>
     </td>
+
 
     <td>
       <%= meeting.meeting_type %>
     </td>
 
-    <td>
-      <%= time_ago_in_words(meeting.created_at) %> ago
-    </td>
 
-    <td>
-      <%= time_ago_in_words(meeting.updated_at) %> ago
-    </td>
 
     <td>
       <a href="/meetings/<%= meeting.id %>">
@@ -95,4 +86,9 @@
     </td>
   </tr>
   <% end %>
+  
 </table>
+
+<% end %>
+
+

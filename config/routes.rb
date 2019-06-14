@@ -1,27 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
+  
+  
   # Routes for the Attendee resource:
 
-  match("/", { :controller => "attendees", :action => "blank_form", :via => "get" })
+  match("/", { :controller => "connections", :action => "list", :via => "get" })
 
 
-  # CREATE
-  match("/new_attendee_form", { :controller => "attendees", :action => "blank_form", :via => "get" })
-  match("/insert_attendee_record", { :controller => "attendees", :action => "save_new_info", :via => "post" })
-
-  # READ
-  match("/attendees", { :controller => "attendees", :action => "list", :via => "get" })
-  match("/attendees/:id_to_display", { :controller => "attendees", :action => "details", :via => "get" })
-
-  # UPDATE
-  match("/existing_attendee_form/:id_to_prefill", { :controller => "attendees", :action => "prefilled_form", :via => "get" })
-  match("/update_attendee_record/:id_to_modify", { :controller => "attendees", :action => "save_edits", :via => "post" })
-
-  # DELETE
-  match("/delete_attendee/:id_to_remove", { :controller => "attendees", :action => "remove_row", :via => "get" })
-
-  #------------------------------
-
+  
   # Routes for the Location resource:
 
   # CREATE

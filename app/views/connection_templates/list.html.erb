@@ -1,9 +1,17 @@
+<% if current_user.blank? %>
+
+<h1> You need to sign in to use this app! </h1>
+
+<dd>Please login or sign up using the above links.</dd>
+
+<% else %>
+
 <h1>
-  Connection list
+  Contacts 
 </h1>
 
 <a href="/new_connection_form">
-  Add a new connection
+  Add a new contact
 </a>
 
 <hr>
@@ -11,7 +19,11 @@
 <table>
   <tr>
     <th>
-      ID
+      Name
+    </th>
+    
+        <th>
+      Photo
     </th>
 
     <th>
@@ -22,16 +34,12 @@
       Location
     </th>
 
-    <th>
-      Photo
-    </th>
+
+
+
 
     <th>
-      Name
-    </th>
-
-    <th>
-      Linkein
+      LinkedIn
     </th>
 
 
@@ -42,24 +50,24 @@
   <% @connections.each do |connection| %>
   <tr>
     <td>
-      <%= connection.id %>
+      <%= connection.name %>
     </td>
-
+    
     <td>
-      <%= connection.company_id %>
-    </td>
-
-    <td>
-      <%= connection.location_id %>
-    </td>
-
-    <td>
-   <img src= <%= connection.photo %> >
+   <img src= <%= connection.photo %> height="80" >
    </td>
 
     <td>
-      <%= connection.name %>
+      <%= connection.company.pluck(:company).first %>
     </td>
+
+    <td>
+      <%= connection.location.pluck(:address).to_sentence%>
+    </td>
+
+
+
+
 
     <td>
       <a href="<%= connection.linkein %>">
@@ -77,3 +85,5 @@
   </tr>
   <% end %>
 </table>
+
+  <% end %>

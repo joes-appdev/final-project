@@ -1,5 +1,5 @@
 <h1>
-  Edit meeting #<%= @meeting.id %>
+  Edit meeting with <%= @meeting.connection.pluck(:name).to_sentence %>
 </h1>
 
 <hr>
@@ -7,13 +7,9 @@
 <%= render("meeting_templates/validation_failures.html.erb") %>
 
 <form action="/update_meeting_record/<%= @meeting.id %>" method="post">
-  <div>
-    <label for="connections_id">
-      Connections
-    </label>
 
-    <input type="text" id="connections_id" name="connections_id" value="<%= @meeting.connections_id %>">
-  </div>
+    <input type="hidden" id="connections_id" name="connections_id" value="<%= @meeting.connections_id %>">
+
 
   <div>
     <label for="date">
@@ -32,19 +28,18 @@
   </div>
 
   <div>
-    <label for="location_id">
-      Location
-    </label>
 
-    <input type="text" id="location_id" name="location_id" value="<%= @meeting.location_id %>">
+      <label for="location_id">Location</label>
+      <select id="location_id" name="location_id" >
+        <% Location.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.address %>
+          </option>
+        <% end %>
+      </select>
   </div>
 
-  <div>
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" value="<%= @meeting.user_id %>">
+    <input type="hidden" id="user_id" name="user_id" value="<%= @meeting.user_id %>">
   </div>
 
   <div>

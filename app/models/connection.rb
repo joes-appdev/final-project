@@ -13,15 +13,23 @@
 #
 
 class Connection < ApplicationRecord
-   has_many :attendees, :dependent => :destroy
- belongs_to :company
-belongs_to :location
+   
+   def meet
+      return Meeting.where({:connections_id => self.id})
+   end
+   
+   def company
+      return Company.where({:id => self.company_id})
+   end
+   
+   def location
+      return Location.where({:id => self.location_id})
+   end
+   
+# has_many :meetings, :foreign_key => "connections_id", :dependent => :destroy
+#  belongs_to :company
+# belongs_to :location
 
-
-
-def location
-   return Location.where({:id => self.location_id})
-end
 
 
     

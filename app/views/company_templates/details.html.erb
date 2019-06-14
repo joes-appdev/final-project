@@ -1,5 +1,5 @@
 <h1>
-  Company #<%= @company.id %> details
+  <%= @company.company %> details
 </h1>
 
 <div>
@@ -34,21 +34,175 @@
     Location
   </dt>
   <dd>
-    <%= @company.location %>
+    <%= Location.where({:id => @company.location}).pluck(:address).first %>
   </dd>
 
-  <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@company.created_at) %> ago
-  </dd>
+<br>
 
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@company.updated_at) %> ago
-  </dd>
 </dl>
+
+
+
+<h2>Employees</h2>
+
+<dl>
+
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+
+    <th>
+      Photo
+    </th>
+    
+    <th>
+      Location
+    </th>
+
+
+
+
+
+    <th>
+      Profile
+    </th>
+
+
+    <th>
+    </th>
+  </tr >
+  
+  
+
+  <% @company.connections.each do |connection| %>
+  <tr>
+    <td>
+      <a href="/connections/<%= connection.id %>">
+         <%= connection.name %>
+      </a>
+     
+    </td>
+    
+    <td>
+   <img src= <%= connection.photo %> height="80" >
+   </td>
+
+    <td>
+      <%= connection.location.pluck(:address).to_sentence%>
+    </td>
+
+
+
+
+    <td>
+      <a href="<%= connection.linkein %>">
+          Linkedin
+        </a>
+    </td>
+
+
+
+    <td>
+
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+
+<h2>My Meetings With <%=@company.company  %></h2>
+
+<table>
+  <tr>
+    <th>
+      Date
+    </th>
+    <th>
+      Connection
+    </th>
+
+
+
+
+
+    <th>
+      Location
+    </th>
+
+
+    <th>
+      Meeting type
+    </th>
+
+
+
+    <th>
+    </th>
+  </tr>
+
+
+
+<% Meeting.where({:user_id => current_user.id}).each do |meeting| %>
+  
+<% identifier = meeting.connection.pluck(:company_id).first%>
+<% x = @company.id %>
+
+
+<% if x  == identifier %>
+  
+  <tr>
+    
+
+    <td>
+      <%= meeting.date %>
+      
+    </td>
+    
+    <td>
+      <%= meeting.connection.pluck(:name).to_sentence %>
+    </td>
+
+    <td>
+      <%= meeting.location.pluck(:address).to_sentence %>
+    </td>
+
+
+    <td>
+      <%= meeting.meeting_type %>
+    </td>
+
+    <td>
+      <a href="/meetings/<%= meeting.id %>">
+        Show details
+      </a>
+    </td>
+    
+
+
+  </tr>
+
+<% else %>
+
+  
+  <%end%>
+  
+  <% end %>
+  
+</table>
+
+
+<br>
+<br>
+
+  <dt>
+    Created <%= time_ago_in_words(@company.created_at) %> ago
+
+  </dt>
+
+
+  <dt>
+    Updated <%= time_ago_in_words(@company.updated_at) %> ago
+  </dt>
 

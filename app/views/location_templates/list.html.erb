@@ -1,3 +1,11 @@
+<% if current_user.blank? %>
+
+<h1> You need to sign in to use this app! </h1>
+
+<dd>Please login or sign up using the above links.</dd>
+
+<%else%>
+
 <h1>
   Location list
 </h1>
@@ -10,20 +18,15 @@
 
 <table>
   <tr>
-    <th>
-      ID
-    </th>
 
     <th>
-      Address
+      City
     </th>
 
-    <th>
-      Created at
-    </th>
+
 
     <th>
-      Updated at
+     Contacts
     </th>
 
     <th>
@@ -32,20 +35,24 @@
 
   <% @locations.each do |location| %>
   <tr>
-    <td>
-      <%= location.id %>
-    </td>
+
 
     <td>
+      
       <%= location.address %>
     </td>
 
-    <td>
-      <%= time_ago_in_words(location.created_at) %> ago
-    </td>
+
 
     <td>
-      <%= time_ago_in_words(location.updated_at) %> ago
+  <% location.connections.each do |connection| %>
+
+    <a href = "/connections/<%= connection.id %> ">
+      <%= connection.name %> 
+      </a>
+      ,
+  <% end %>
+
     </td>
 
     <td>
@@ -56,3 +63,6 @@
   </tr>
   <% end %>
 </table>
+
+  <% end %>
+

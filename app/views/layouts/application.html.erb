@@ -13,6 +13,9 @@
     <!-- Connect Font Awesome CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
+
+
+
     <!-- Embedding other CSS and JavaScript from gems and things -->
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
@@ -44,17 +47,36 @@
         <a href="/connections">
           <i class="fas fa-users"></i>
 
-          Connections
+          Contacts
         </a>
       </div>
     
      <div>
         <a href="/meetings">
-          <i class="fas fa-users"></i>
+          
+          <i class="fas fa-handshake"></i>
 
-          Meetings
+          My Meetings
         </a>
       </div>
+      
+      <div>
+        <a href="/companies">
+          <i class="fas fa-building"></i>
+
+          Companies
+        </a>
+      </div>
+      
+      <div>
+        <a href="/locations">
+<i class="fas fa-map-marker-alt"></i>
+
+          Locations
+        </a>
+      </div>
+            
+      
           <hr>
 
       <% if current_user.blank? %>

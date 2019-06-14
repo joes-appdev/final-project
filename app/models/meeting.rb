@@ -15,7 +15,20 @@
 
 class Meeting < ApplicationRecord
     belongs_to :user
-    has_many :attendees, :dependent => :destroy
-    belongs_to :location
+belongs_to :connections, :class_name => "Connection"
+belongs_to :location
+    
+    
+def connection
+    return Connection.where({:id => self.connections_id})
+end
+
+def location
+    return Location.where({:id => self.location_id})
+end
+
+
+
+
 
 end

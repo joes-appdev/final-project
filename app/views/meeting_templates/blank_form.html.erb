@@ -7,13 +7,8 @@
 <%= render("meeting_templates/validation_failures.html.erb") %>
 
 <form action="/insert_meeting_record" method="post">
-  <div>
-    <label for="connections_id">
-      Connections
-    </label>
+ 
 
-    <input type="text" id="connections_id" name="connections_id" value="<%= @meeting.connections_id %>">
-  </div>
 
   <div>
     <label for="date">
@@ -23,29 +18,39 @@
     <input type="text" id="date" name="date" value="<%= @meeting.date %>">
   </div>
 
+
+  
   <div>
-    <label for="meeting_notes">
-      Meeting notes
-    </label>
 
-    <textarea id="meeting_notes" name="meeting_notes"><%= @meeting.meeting_notes %></textarea>
+      <label for="location_id">Location</label>
+      <select id="location_id" name="location_id" >
+        <% Location.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.address %>
+          </option>
+        <% end %>
+      </select>
   </div>
+  
+  
+<div>
 
-  <div>
-    <label for="location_id">
-      Location
-    </label>
+      <label for="connections_id">Connection</label>
+      <select id="connections_id" name="connections_id" >
+        <% Connection.all.order({ :id => :asc }).each do |a_user| %>
+          <option value="<%= a_user.id %>">
+            <%= a_user.name %>
+          </option>
+        <% end %>
+      </select>
+</div>
 
-    <input type="text" id="location_id" name="location_id" value="<%= @meeting.location_id %>">
-  </div>
 
-  <div>
-    <label for="user_id">
-      User
-    </label>
 
-    <input type="text" id="user_id" name="user_id" value="<%= @meeting.user_id %>">
-  </div>
+
+  
+<input type="hidden" name= "user_id" value="<%= current_user.id %>" >
+
 
   <div>
     <label for="meeting_type">
@@ -53,6 +58,14 @@
     </label>
 
     <input type="text" id="meeting_type" name="meeting_type" value="<%= @meeting.meeting_type %>">
+  </div>
+  
+    <div>
+    <label for="meeting_notes">
+      Meeting notes
+    </label>
+
+    <textarea id="meeting_notes" name="meeting_notes"><%= @meeting.meeting_notes %></textarea>
   </div>
 
   <button>
